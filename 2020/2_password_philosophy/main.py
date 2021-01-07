@@ -9,8 +9,11 @@ def part1(pwds):
             ans += 1
     return ans
 
-#def part2(pwds):
-#    ...
+def part2(pwds):
+    ans = 0
+    for r_min, r_max, c, pwd in pwds:
+        ans += (int(pwd[r_min-1] == c) + int(pwd[r_max-1] == c)) % 2
+    return ans
 
 
 def preprocess(x):
@@ -24,6 +27,6 @@ def preprocess(x):
 
 txt = open("input").read().strip().split("\n")
 pwds = [preprocess(x.split(" ")) for x in txt]
-print(part1(pwds))
-#print(part2(pwds))
+#print(part1(pwds))
+print(part2(pwds))
 
