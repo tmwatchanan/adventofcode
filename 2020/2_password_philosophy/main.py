@@ -1,20 +1,29 @@
 from collections import Counter
 
-def solve(pwds):
+def part1(pwds):
     ans = 0
-    for r, c, pwd in pwds:
-        r = r.split("-")
-        r_min = int(r[0])
-        r_max = int(r[1])
-        c = c[:-1]
-        print(r_min, r_max, c, pwd, )
+    for r_min, r_max, c, pwd in pwds:
+        print(r_min, r_max, c, pwd)
         counter = Counter(pwd)
         if r_min <= counter[c] and counter[c] <= r_max:
             ans += 1
     return ans
+
+#def part2(pwds):
+#    ...
+
+
+def preprocess(x):
+    print(x)
+    r = x[0].split("-")
+    r_min = int(r[0])
+    r_max = int(r[1])
+    c = x[1][:-1]
+    return r_min, r_max, c, x[2]
         
 
 txt = open("input").read().strip().split("\n")
-pwds = [x.split(" ") for x in txt]
-print(solve(pwds))
+pwds = [preprocess(x.split(" ")) for x in txt]
+print(part1(pwds))
+#print(part2(pwds))
 
